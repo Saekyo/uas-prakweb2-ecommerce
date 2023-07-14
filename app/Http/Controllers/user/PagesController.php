@@ -18,4 +18,8 @@ class PagesController extends Controller
         $user = User::all();
         return view('homepage', compact('products', 'category', 'user'));
     }
+    public function aboutUs()
+    {
+        return view('about-us');
+    }
 }
