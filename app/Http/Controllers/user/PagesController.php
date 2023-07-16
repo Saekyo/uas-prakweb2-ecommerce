@@ -22,4 +22,37 @@ class PagesController extends Controller
     {
         return view('about-us');
     }
+
+
+public function showProduct()
+    {
+        $user = null;
+
+        if (Auth::check()) {
+            $user = User::find(Auth::user()->id);
+        }
+
+        $product = Product::all();
+        $products = Product::with('category')->limit(5)->get();
+        $categories = Category::all();
+
+        return view('show_product', compact('user', 'products', 'categories', 'product'));
+    }
+
+    public function detailProduct($id)
+    {
+        $user = null;
+
+        if (Auth::check()) {
+            $user = User::find(Auth::user()->id);
+        }
+
+        $product = Product::with('category')->find($id);
+
+        if (!$product) {
+            abort(404);
+        }
+
+        return view('detail_product', compact('user', 'product'));
+    }
 }
