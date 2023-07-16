@@ -55,4 +55,8 @@ public function showProduct()
 
         return view('detail_product', compact('user', 'product'));
     }
+    public function cart()
+    {
+        return view('cart');
+    }
 }
